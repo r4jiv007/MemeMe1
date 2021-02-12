@@ -87,6 +87,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
         initTextField(self.topEditText, defText: "TOP")
         initTextField(self.bottomEditText, defText: "BOTTOM")
         self.memeImage.image = nil
+        handleShareButton()
     }
     
     @IBAction func shareButtonAction(_ sender: Any) {
@@ -96,9 +97,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
             self.createMeme()
             self.dismiss(animated: true, completion: nil)
         }
-        
         present(activityController, animated: true, completion: nil)
-        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -166,6 +165,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageData = info[.originalImage] as? UIImage{
             memeImage.image=imageData
+            shareMeme.isEnabled=true
         }
         dismiss(animated: true, completion: nil)
     }
@@ -175,9 +175,9 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     }
     
     func createMeme(){
-        
         let memedImage = generateMemedImage()
         let meme = Meme(topText: topEditText.text!, bottomText: bottomEditText.text!, originalImage: memeImage.image!, memedImage:memedImage)
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
 }
 

@@ -57,12 +57,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="BOTTOM" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-NS-zDr">
-                                <rect key="frame" x="172" y="691" width="70.5" height="22"/>
+                                <rect key="frame" x="172" y="741" width="70.5" height="22"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="TOP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-j8-0cL">
-                                <rect key="frame" x="190.5" y="188" width="33" height="22"/>
+                                <rect key="frame" x="190.5" y="138" width="33" height="22"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -71,9 +71,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XaV-j8-0cL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="283-E9-bmW"/>
-                            <constraint firstItem="XaV-j8-0cL" firstAttribute="top" secondItem="5Kk-U8-nac" secondAttribute="bottom" constant="100" id="4T0-sz-KmF"/>
+                            <constraint firstItem="XaV-j8-0cL" firstAttribute="top" secondItem="5Kk-U8-nac" secondAttribute="bottom" constant="50" id="4T0-sz-KmF"/>
                             <constraint firstItem="5Kk-U8-nac" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AVY-xE-J39"/>
-                            <constraint firstItem="rJ1-vU-7ER" firstAttribute="top" secondItem="DGH-NS-zDr" secondAttribute="bottom" constant="100" id="Dse-3d-oGA"/>
+                            <constraint firstItem="rJ1-vU-7ER" firstAttribute="top" secondItem="DGH-NS-zDr" secondAttribute="bottom" constant="50" id="Dse-3d-oGA"/>
                             <constraint firstItem="rJ1-vU-7ER" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Faa-DR-tyr"/>
                             <constraint firstItem="cBr-lm-8K8" firstAttribute="top" secondItem="5Kk-U8-nac" secondAttribute="bottom" id="KI1-wq-C6M"/>
                             <constraint firstItem="5Kk-U8-nac" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QhV-0h-eZu"/>
