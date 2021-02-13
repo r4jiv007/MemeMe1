@@ -28,8 +28,6 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         initTextField(self.topEditText, defText: "TOP")
         initTextField(self.bottomEditText, defText: "BOTTOM")
     }
@@ -128,9 +126,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     
     @objc
     func keyboardWillHide(_ notification:Notification) {
-        
         view.frame.origin.y = 0
-        
     }
     
     func unsubscribeToKeyboardNotifications() {
@@ -141,7 +137,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
     }
     
@@ -177,7 +173,7 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     func createMeme(){
         let memedImage = generateMemedImage()
         let meme = Meme(topText: topEditText.text!, bottomText: bottomEditText.text!, originalImage: memeImage.image!, memedImage:memedImage)
-        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        (UIApplication.shared.delegate as! AppDelegate).memesList.append(meme)
     }
 }
 
