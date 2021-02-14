@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController:  UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+class MemeViewController:  UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var shareMeme: UIBarButtonItem!
     @IBOutlet weak var pickImage: UIBarButtonItem!
@@ -64,19 +64,17 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
         
     }
     
-    @IBAction func pickAnImage(_ sender: Any) {
-        launchPicker(sourceType: .photoLibrary)
-    }
-    
-    @IBAction func pickCamera(_ sender: Any) {
-        launchPicker(sourceType: .camera)
+    @IBAction func pickImage(_ sender: UIBarButtonItem) {
+        
+        launchPicker(sourceType: sender.tag)
     }
     
     
-    func launchPicker(sourceType:UIImagePickerController.SourceType) {
+    
+    func launchPicker(sourceType:UIImagePickerController.SourceType.RawValue) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = sourceType
+        imagePicker.sourceType = UIImagePickerController.SourceType(rawValue:sourceType)!
         present(imagePicker, animated: true, completion: nil)
         
     }
@@ -92,7 +90,9 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
-            self.createMeme()
+            if(success){
+                self.createMeme()
+            }
             self.dismiss(animated: true, completion: nil)
         }
         present(activityController, animated: true, completion: nil)
@@ -112,14 +112,14 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc
     func keyboardWillShow(_ notification:Notification) {
         if bottomEditText.isFirstResponder {
-            view.frame.origin.y =  -1 * getKeyboardHeight(notification)
+            view.frame.origin.y =  -getKeyboardHeight(notification)
         }
     }
     
@@ -175,12 +175,5 @@ class ViewController:  UIViewController, UINavigationControllerDelegate, UIImage
         let meme = Meme(topText: topEditText.text!, bottomText: bottomEditText.text!, originalImage: memeImage.image!, memedImage:memedImage)
         (UIApplication.shared.delegate as! AppDelegate).memesList.append(meme)
     }
-}
-
-struct Meme {
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memedImage: UIImage
 }
 
